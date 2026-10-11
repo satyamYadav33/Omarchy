@@ -1,11 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "omarchy-desktop",
   "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/", "destination": "/omarchy-desktop/index.html" },
+    { "source": "/assets/(.*)", "destination": "/omarchy-desktop/assets/$1" },
+    { "source": "/styles/(.*)", "destination": "/omarchy-desktop/styles/$1" },
+    { "source": "/src/(.*)", "destination": "/omarchy-desktop/src/$1" },
+    { "source": "/(.*)", "destination": "/omarchy-desktop/$1" }
   ]
 }
