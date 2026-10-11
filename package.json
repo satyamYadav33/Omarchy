@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node omarchy-desktop/server.js",
     "dev": "node omarchy-desktop/server.js",
-    "build": "echo 'Ready for deployment'"
+    "build": "node build-public.js"
   },
   "keywords": [
     "omarchy",

@@ -1,0 +1,906 @@
+/* Omarchy Applications Stylesheet */
+/* Styles for Terminal, Agentic AI, Neovim IDE, btop Monitor, Manual Viewer, WebApps, and Screensaver */
+
+/* ========================================= */
+/* Ghostty Terminal                          */
+/* ========================================= */
+.term-wrapper {
+  width: 100%;
+  height: 100%;
+  background: var(--theme-background, #1a1b26);
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  font-family: "JetBrains Mono", "Berkeley Mono", "Fira Code", monospace;
+  font-size: 13px;
+  color: var(--theme-foreground, #a9b1d6);
+  line-height: 1.5;
+}
+
+.term-screen {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.term-line {
+  word-break: break-word;
+}
+
+.term-line.dim { opacity: 0.6; }
+.term-line.error { color: var(--theme-red, #f7768e); }
+.term-line.success { color: var(--theme-green, #9ece6a); }
+
+.term-input-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.term-prompt {
+  white-space: nowrap;
+}
+
+.term-prompt-user { color: var(--theme-green, #9ece6a); font-weight: bold; }
+.term-prompt-at { color: var(--theme-dark-foreground, #565f89); }
+.term-prompt-host { color: var(--theme-accent, #7aa2f7); font-weight: bold; }
+.term-prompt-path { color: var(--theme-cyan, #7dcfff); }
+.term-prompt-symbol { color: var(--theme-magenta, #bb9af7); font-weight: bold; margin-left: 2px; }
+
+.term-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--theme-bright-foreground, #c0caf5);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.term-fastfetch-grid {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.term-ascii-logo {
+  color: var(--theme-accent, #7aa2f7);
+  font-size: 11px;
+  line-height: 1.1;
+  font-weight: bold;
+}
+
+.term-sysinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.term-info-row {
+  font-size: 12.5px;
+}
+
+.term-info-key {
+  color: var(--theme-accent, #7aa2f7);
+  font-weight: bold;
+}
+
+.term-info-val {
+  color: var(--theme-bright-foreground, #c0caf5);
+}
+
+.term-info-palette {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.term-info-palette span {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.term-code {
+  color: var(--theme-accent, #7aa2f7);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.term-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 6px 0;
+}
+
+.term-box-title {
+  color: var(--theme-accent, #7aa2f7);
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.term-matrix-box {
+  color: var(--theme-green, #00ff88);
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding: 10px 0;
+}
+
+/* ========================================= */
+/* Agentic OS - AI Coding Assistant          */
+/* ========================================= */
+.agent-wrapper {
+  width: 100%;
+  height: 100%;
+  background: var(--theme-background, #1a1b26);
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--theme-dark-background, #13141c);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.agent-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.agent-avatar {
+  font-size: 24px;
+}
+
+.agent-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.agent-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--theme-bright-foreground, #c0caf5);
+}
+
+.agent-status-badge {
+  font-size: 11px;
+  color: var(--theme-green, #9ece6a);
+  background: rgba(158, 206, 106, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.agent-subtitle {
+  font-size: 11px;
+  color: var(--theme-dark-foreground, #565f89);
+}
+
+.agent-select {
+  background: var(--theme-lighter-background, #24283b);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--theme-bright-foreground, #c0caf5);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+}
+
+.agent-chat-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.agent-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 85%;
+}
+
+.agent-msg.from-user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.agent-msg-avatar {
+  font-size: 20px;
+  padding-top: 4px;
+}
+
+.agent-msg-bubble {
+  background: var(--theme-lighter-background, #24283b);
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.agent-msg.from-user .agent-msg-bubble {
+  background: rgba(122, 162, 247, 0.2);
+  border-color: var(--theme-accent, #7aa2f7);
+}
+
+.agent-msg-sender {
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--theme-accent, #7aa2f7);
+  margin-bottom: 4px;
+}
+
+.agent-msg-content {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--theme-bright-foreground, #c0caf5);
+}
+
+.agent-code-block {
+  background: var(--theme-darker-background, #0e0e14);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.agent-inline-code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.agent-quick-chips {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  overflow-x: auto;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.agent-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--theme-foreground, #a9b1d6);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.agent-chip:hover {
+  background: rgba(122, 162, 247, 0.2);
+  border-color: var(--theme-accent, #7aa2f7);
+}
+
+.agent-input-row {
+  display: flex;
+  padding: 12px 16px;
+  background: var(--theme-dark-background, #13141c);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 10px;
+}
+
+.agent-input {
+  flex: 1;
+  background: var(--theme-background, #1a1b26);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  color: var(--theme-bright-foreground, #c0caf5);
+  font-family: inherit;
+  font-size: 13px;
+  resize: none;
+  outline: none;
+}
+
+.agent-send-btn {
+  background: var(--theme-accent, #7aa2f7);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ========================================= */
+/* Neovim IDE                                */
+/* ========================================= */
+.nvim-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--theme-background, #1a1b26);
+  font-family: monospace;
+}
+
+.nvim-tabbar {
+  display: flex;
+  background: var(--theme-darker-background, #0e0e14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+}
+
+.nvim-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--theme-dark-foreground, #565f89);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.nvim-tab.active {
+  background: var(--theme-background, #1a1b26);
+  color: var(--theme-bright-foreground, #c0caf5);
+  border-top: 2px solid var(--theme-accent, #7aa2f7);
+}
+
+.nvim-tab-close {
+  font-size: 10px;
+}
+
+.nvim-main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.nvim-sidebar {
+  width: 190px;
+  background: var(--theme-dark-background, #13141c);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.nvim-sidebar-header {
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--theme-dark-foreground, #565f89);
+  display: flex;
+  justify-content: space-between;
+}
+
+.nvim-sidebar-badge {
+  color: var(--theme-accent, #7aa2f7);
+}
+
+.nvim-filetree {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 12px;
+}
+
+.nvim-folder-name {
+  padding: 4px 12px;
+  color: var(--theme-dark-foreground, #565f89);
+}
+
+.nvim-file-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 18px;
+  color: var(--theme-foreground, #a9b1d6);
+  cursor: pointer;
+}
+
+.nvim-file-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nvim-file-item.active {
+  background: var(--theme-lighter-background, #24283b);
+  color: var(--theme-accent, #7aa2f7);
+}
+
+.nvim-editor-surface {
+  flex: 1;
+  display: flex;
+  background: var(--theme-background, #1a1b26);
+}
+
+.nvim-gutter {
+  width: 44px;
+  background: var(--theme-dark-background, #13141c);
+  color: var(--theme-dark-foreground, #565f89);
+  font-size: 12px;
+  padding: 10px 6px;
+  text-align: right;
+  line-height: 20px;
+}
+
+.nvim-textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--theme-bright-foreground, #c0caf5);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 10px;
+  resize: none;
+  white-space: pre;
+}
+
+.nvim-lualine {
+  height: 24px;
+  background: var(--theme-dark-background, #13141c);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+}
+
+.nvim-lua-section {
+  padding: 0 10px;
+}
+
+.nvim-lua-mode {
+  background: var(--theme-accent, #7aa2f7);
+  color: #000;
+  font-weight: bold;
+}
+
+.nvim-lua-mode.insert {
+  background: var(--theme-green, #9ece6a);
+}
+
+.nvim-lua-spacer {
+  flex: 1;
+}
+
+/* ========================================= */
+/* btop System Monitor                       */
+/* ========================================= */
+.btop-wrapper {
+  width: 100%;
+  height: 100%;
+  background: var(--theme-background, #1a1b26);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: monospace;
+}
+
+.btop-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btop-box {
+  background: var(--theme-dark-background, #13141c);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.btop-box-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--theme-accent, #7aa2f7);
+  margin-bottom: 8px;
+}
+
+.btop-core-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.btop-core-label {
+  width: 50px;
+  color: var(--theme-dark-foreground, #565f89);
+}
+
+.btop-bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.btop-bar-fill {
+  height: 100%;
+  background: var(--theme-accent, #7aa2f7);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.btop-bar-fill.mem-fill {
+  background: var(--theme-magenta, #bb9af7);
+}
+
+.btop-core-pct {
+  width: 32px;
+  text-align: right;
+  color: var(--theme-bright-foreground, #c0caf5);
+}
+
+.btop-mem-stat, .btop-disk-stat {
+  margin-bottom: 10px;
+}
+
+.btop-stat-label {
+  font-size: 11.5px;
+  margin-bottom: 4px;
+}
+
+.btop-disk-meta {
+  font-size: 10px;
+  color: var(--theme-dark-foreground, #565f89);
+  margin-top: 4px;
+}
+
+.btop-proc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.btop-proc-table-header {
+  display: flex;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--theme-dark-foreground, #565f89);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btop-proc-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.btop-proc-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  font-size: 11.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.btop-proc-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.btop-kill-btn {
+  background: rgba(247, 118, 142, 0.2);
+  color: var(--theme-red, #f7768e);
+  border: 1px solid var(--theme-red, #f7768e);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+/* ========================================= */
+/* Manual Browser                            */
+/* ========================================= */
+.manual-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: var(--theme-background, #1a1b26);
+}
+
+.manual-sidebar {
+  width: 250px;
+  background: var(--theme-dark-background, #13141c);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.manual-search-box {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#manual-search {
+  width: 100%;
+  background: var(--theme-background, #1a1b26);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--theme-bright-foreground, #c0caf5);
+  outline: none;
+}
+
+.manual-chapter-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.manual-ch-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--theme-foreground, #a9b1d6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+}
+
+.manual-ch-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.manual-ch-item.active {
+  background: var(--theme-lighter-background, #24283b);
+  color: var(--theme-accent, #7aa2f7);
+  border-left: 3px solid var(--theme-accent, #7aa2f7);
+}
+
+.manual-ch-num {
+  font-size: 10px;
+  color: var(--theme-dark-foreground, #565f89);
+}
+
+.manual-reader {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 32px;
+  user-select: text;
+}
+
+.manual-content {
+  max-width: 780px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.manual-h1 {
+  font-size: 22px;
+  color: var(--theme-bright-foreground, #c0caf5);
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.manual-h2 {
+  font-size: 17px;
+  color: var(--theme-accent, #7aa2f7);
+  margin: 18px 0 10px;
+}
+
+.manual-code-block {
+  background: var(--theme-darker-background, #0e0e14);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 12.5px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.manual-inline-code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--theme-accent, #7aa2f7);
+}
+
+/* ========================================= */
+/* WebApp Runner                             */
+/* ========================================= */
+.webapp-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.webapp-nav-bar {
+  height: 36px;
+  background: var(--theme-dark-background, #13141c);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.webapp-nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--theme-foreground, #a9b1d6);
+  font-size: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.webapp-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.webapp-url-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: var(--theme-background, #1a1b26);
+  border-radius: 6px;
+  padding: 3px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 6px;
+}
+
+.webapp-ssl {
+  font-size: 11px;
+}
+
+.webapp-url-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--theme-foreground, #a9b1d6);
+  font-size: 12px;
+  outline: none;
+}
+
+.webapp-frame-container {
+  flex: 1;
+  background: #fff;
+}
+
+.webapp-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ========================================= */
+/* Screensaver & Lock Screen                 */
+/* ========================================= */
+.screensaver-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screensaver-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.screensaver-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.screensaver-svg-logo {
+  width: 90px;
+  height: 90px;
+  animation: screensaver-float 4s ease-in-out infinite;
+}
+
+@keyframes screensaver-float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.screensaver-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  color: var(--theme-bright-foreground, #c0caf5);
+  margin-top: 12px;
+}
+
+.screensaver-clock {
+  font-size: 64px;
+  font-weight: 300;
+  color: var(--theme-bright-foreground, #c0caf5);
+  margin-top: 10px;
+  letter-spacing: 2px;
+}
+
+.screensaver-date {
+  font-size: 16px;
+  color: var(--theme-dark-foreground, #565f89);
+  margin-bottom: 28px;
+}
+
+.screensaver-unlock-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.screensaver-user-badge {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--theme-accent, #7aa2f7);
+}
+
+.screensaver-pass {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #fff;
+  width: 240px;
+  text-align: center;
+  outline: none;
+}
+
+.screensaver-unlock-btn {
+  background: var(--theme-accent, #7aa2f7);
+  color: #000;
+  border: none;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 6px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.screensaver-hint {
+  font-size: 11px;
+  color: var(--theme-dark-foreground, #565f89);
+  margin-top: 14px;
+}
