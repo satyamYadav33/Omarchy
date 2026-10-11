@@ -1,0 +1,162 @@
+/* Omarchy Hyprland Window Compositor Stylesheet */
+/* Implements Wayland-style bezier physics, glowing borders, active highlights, and tiling */
+
+:root {
+  --hypr-radius: 12px;
+  --hypr-border-width: 2px;
+  --hypr-active-border: linear-gradient(135deg, #7aa2f7ee, #bb9af7ee);
+  --hypr-inactive-border: rgba(255, 255, 255, 0.08);
+  --hypr-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --hypr-active-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(122, 162, 247, 0.25);
+  --hypr-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "JetBrains Mono", sans-serif;
+  background-color: var(--theme-darker-background, #0e0e14);
+  color: var(--theme-foreground, #a9b1d6);
+}
+
+/* Wallpaper Layer */
+.omarchy-wallpaper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: background-image 0.4s ease-in-out;
+  z-index: 0;
+}
+
+/* Hyprland Desktop Work Area */
+.hypr-desktop {
+  position: absolute;
+  top: 38px; /* Below Quickshell Bar */
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 38px);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Individual Hyprland Window */
+.hypr-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: var(--theme-background, #1a1b26);
+  border-radius: var(--hypr-radius);
+  border: var(--hypr-border-width) solid var(--hypr-inactive-border);
+  box-shadow: var(--hypr-shadow);
+  overflow: hidden;
+  transition: left 0.25s var(--hypr-ease), top 0.25s var(--hypr-ease), width 0.25s var(--hypr-ease), height 0.25s var(--hypr-ease), border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  outline: none;
+}
+
+/* Active Focused Window */
+.hypr-window.active {
+  border-color: var(--theme-accent, #7aa2f7);
+  box-shadow: var(--hypr-active-shadow);
+}
+
+.hypr-window.floating {
+  z-index: 8;
+  resize: both;
+}
+
+.hypr-window.maximized {
+  border-radius: 0;
+}
+
+.hypr-window.closing {
+  transform: scale(0.92);
+  opacity: 0;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+/* Window Header / Titlebar */
+.hypr-window-header {
+  height: 36px;
+  min-height: 36px;
+  background: var(--theme-dark-background, #13141c);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: grab;
+}
+
+.hypr-window-header:active {
+  cursor: grabbing;
+}
+
+.hypr-window-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--theme-bright-foreground, #c0caf5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hypr-window-icon {
+  font-size: 14px;
+}
+
+/* Window Control Buttons */
+.hypr-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hypr-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--theme-dark-foreground, #565f89);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.hypr-btn:hover {
+  background: var(--theme-lighter-background, #24283b);
+  color: var(--theme-bright-foreground, #c0caf5);
+}
+
+.hypr-btn-close:hover {
+  background: var(--theme-red, #f7768e) !important;
+  color: #fff !important;
+}
+
+/* Window Content Body */
+.hypr-window-content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--theme-background, #1a1b26);
+  user-select: text;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omarchy Linux — The Agentic OS</title>
+  <link rel="icon" type="image/png" href="assets/icons/icon.png">
+
+  <!-- Google Fonts: Inter & JetBrains Mono for authentic Omarchy aesthetics -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Omarchy Stylesheets -->
+  <link rel="stylesheet" href="styles/hyprland.css">
+  <link rel="stylesheet" href="styles/quickshell.css">
+  <link rel="stylesheet" href="styles/apps.css">
+</head>
+<body>
+
+  <!-- Dynamic Wallpaper Layer -->
+  <div id="omarchy-wallpaper" class="omarchy-wallpaper"></div>
+
+  <!-- Quickshell Top Bar Component -->
+  <header id="quickshell-bar" class="quickshell-bar"></header>
+
+  <!-- Hyprland Compositor Desktop Area -->
+  <main id="hypr-desktop" class="hypr-desktop"></main>
+
+  <!-- Spotlight App Launcher Overlay (Super + Space) -->
+  <div id="launcher-overlay"></div>
+
+  <!-- Control Center Drawer Overlay (Gear icon) -->
+  <div id="control-center-overlay"></div>
+
+  <!-- Screensaver & Lock Screen Overlay (Super + Esc) -->
+  <div id="screensaver-overlay"></div>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

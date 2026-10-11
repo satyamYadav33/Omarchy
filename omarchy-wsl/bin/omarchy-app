@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Omarchy WebApp Generator
+set -eo pipefail
+
+NAME="$1"
+URL="$2"
+
+if [[ -z "$NAME" || -z "$URL" ]]; then
+  echo "Usage: omarchy app <name> <url>" >&2
+  echo "Example: omarchy app \"ChatGPT\" \"https://chatgpt.com\"" >&2
+  exit 1
+fi
+
+APP_DIR="$HOME/.local/share/applications"
+mkdir -p "$APP_DIR"
+DESKTOP_FILE="$APP_DIR/${NAME// /_}.desktop"
+
+cat << EOF > "$DESKTOP_FILE"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=$NAME
+Comment=Omarchy Web Application
+Exec=xdg-open "$URL"
+Icon=applications-internet
+Terminal=false
+Categories=Network;WebBrowser;
+EOF
+
+chmod +x "$DESKTOP_FILE"
+echo -e "\033[1;32m✔ Standalone Omarchy WebApp created successfully:\033[0m \033[1;36m$NAME\033[0m"
+echo "  Desktop entry saved to: $DESKTOP_FILE"
+echo "  Target URL: $URL"

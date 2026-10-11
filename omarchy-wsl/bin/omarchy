@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# Omarchy CLI Router for WSL / Linux (Micro-Distro Edition)
+set -eo pipefail
+
+OMARCHY_DIR="${OMARCHY_PATH:-$HOME/.local/share/omarchy}"
+VERSION="2026.10-micro"
+
+show_help() {
+  cat << 'EOF'
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+
+OMARCHY CLI — The Agentic Linux Distribution by DHH (Micro-Clone Edition)
+
+Usage: omarchy <command> [arguments]
+
+Commands:
+  theme [list|set <name>]   Manage desktop and terminal themes (Tokyo Night, Rose Pine, etc.)
+  agent [<name>]            Launch or configure AI coding agents (Claude, Gemini, Copilot, etc.)
+  app <name> <url>          Create standalone desktop launcher for any website
+  info                      Show Omarchy fastfetch system overview
+  version                   Print version and distribution info
+  help                      Show this help message
+
+For details on any command, run: omarchy <command> --help
+EOF
+}
+
+COMMAND="$1"
+shift || true
+
+case "$COMMAND" in
+  theme)
+    exec "$OMARCHY_DIR/bin/omarchy-theme" "$@"
+    ;;
+  agent)
+    exec "$OMARCHY_DIR/bin/omarchy-agent" "$@"
+    ;;
+  app)
+    exec "$OMARCHY_DIR/bin/omarchy-app" "$@"
+    ;;
+  info)
+    exec "$OMARCHY_DIR/bin/omarchy-info" "$@"
+    ;;
+  version|--version|-v)
+    echo "Omarchy Linux (Micro-Distro Clone) v$VERSION"
+    ;;
+  help|--help|-h|"")
+    show_help
+    ;;
+  *)
+    echo "omarchy: unknown command '$COMMAND'" >&2
+    echo "Run 'omarchy help' for a list of available commands." >&2
+    exit 1
+    ;;
+esac

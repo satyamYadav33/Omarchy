@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# Omarchy Theme Switcher for Linux/WSL
+set -eo pipefail
+
+THEMES=(
+  "tokyo-night"
+  "rose-pine"
+  "catppuccin"
+  "catppuccin-latte"
+  "gruvbox"
+  "hackerman"
+  "everforest"
+  "nord"
+  "vantablack"
+  "starship"
+  "kanagawa"
+  "retro-82"
+)
+
+STATE_DIR="$HOME/.local/state/omarchy"
+mkdir -p "$STATE_DIR"
+
+list_themes() {
+  current=$(cat "$STATE_DIR/current-theme" 2>/dev/null || echo "tokyo-night")
+  echo "Available Omarchy Themes:"
+  for t in "${THEMES[@]}"; do
+    if [[ "$t" == "$current" ]]; then
+      echo -e "  \033[1;36m▶ $t (Active)\033[0m"
+    else
+      echo "    $t"
+    fi
+  done
+  echo ""
+  echo "Apply a theme using: omarchy theme set <theme-name>"
+}
+
+set_theme() {
+  local theme="$1"
+  if [[ -z "$theme" ]]; then
+    echo "Usage: omarchy theme set <theme-name>" >&2
+    exit 1
+  fi
+
+  matched=false
+  for t in "${THEMES[@]}"; do
+    if [[ "$t" == "$theme" ]]; then
+      matched=true
+      break
+    fi
+  done
+
+  if [[ "$matched" != "true" ]]; then
+    echo "Error: Theme '$theme' not found." >&2
+    echo "Available themes: ${THEMES[*]}" >&2
+    exit 1
+  fi
+
+  echo "$theme" > "$STATE_DIR/current-theme"
+  echo -e "\033[1;32m✔ Successfully applied Omarchy theme:\033[0m \033[1;36m$theme\033[0m"
+}
+
+case "$1" in
+  list|"")
+    list_themes
+    ;;
+  set)
+    set_theme "$2"
+    ;;
+  *)
+    set_theme "$1"
+    ;;
+esac

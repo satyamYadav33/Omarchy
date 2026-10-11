@@ -1,0 +1,41 @@
+# Omarchy Starship Prompt Configuration
+format = """
+[▲](bold cyan) \
+$directory\
+$git_branch\
+$git_status\
+$package\
+$ruby\
+$python\
+$rust\
+$nodejs\
+$cmd_duration\
+$line_break\
+$character"""
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+style = "bold purple"
+format = "on [$symbol$branch]($style) "
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[nodejs]
+format = "via [node $version](bold green) "
+
+[ruby]
+format = "via [ruby $version](bold red) "
+
+[python]
+format = "via [py $version](bold yellow) "
+
+[cmd_duration]
+min_time = 2_000
+style = "bold yellow"
+format = "took [$duration]($style) "

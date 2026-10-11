@@ -1,0 +1,27 @@
+{
+  "name": "omarchy-clone",
+  "version": "1.0.0",
+  "description": "High-end, ultra-lightweight clone of the Omarchy Linux distribution by DHH",
+  "type": "module",
+  "main": "omarchy-desktop/server.js",
+  "scripts": {
+    "start": "node omarchy-desktop/server.js",
+    "dev": "node omarchy-desktop/server.js",
+    "build": "echo 'Ready for deployment'"
+  },
+  "keywords": [
+    "omarchy",
+    "linux",
+    "hyprland",
+    "quickshell",
+    "wayland",
+    "agentic-os",
+    "dhh"
+  ],
+  "author": "Satyam Yadav",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/satyamYadav33/Omarchy_Clone.git"
+  }
+}
