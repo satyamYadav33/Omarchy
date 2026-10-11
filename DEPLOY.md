@@ -7,7 +7,7 @@ This repository is pre-configured for instant, zero-configuration deployment to 
 ## ⚡ Option 1: One-Click Vercel Dashboard Deployment (Recommended)
 
 1. Go to **[vercel.com/new](https://vercel.com/new)**.
-2. Under **Import Git Repository**, find and select `Omarchy_Clone`.
+2. Under **Import Git Repository**, find and select `Omarchy`.
 3. In the project configuration screen:
    * **Framework Preset:** Select **Other** (auto-detected).
    * **Root Directory:** Leave as `./` (or select `omarchy-desktop`).
